@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SpotifyModule } from './spotify/spotify.module';
+import { SpotifyModule } from './modules/spotify/spotify.module';
 
 @NgModule({
   declarations: [AppComponent],

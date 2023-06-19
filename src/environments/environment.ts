@@ -1,5 +1,3 @@
-import { Environment } from 'src/types/environment';
-
 export const environment: Environment = {
   // These will be overriden by process.env on production mode
   SPTF_APP_CLIENT_ID: '',

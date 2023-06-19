@@ -10,7 +10,8 @@ describe('AuthService', () => {
     service = TestBed.inject(AuthService);
   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
+  it('should route to spotify auth', async () => {
+    await service.initSpotifyAuthorization();
+    expect(window.location).toContain('accounts.spotify.com/authorize');
   });
 });
