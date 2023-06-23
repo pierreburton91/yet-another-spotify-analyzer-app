@@ -1,14 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { webApiBaseURL } from '../constants';
+import { tap } from 'rxjs';
 
 @Injectable()
 export class GenresService {
   constructor(private http: HttpClient) {}
 
   getGenresSeed() {
-    return this.http.get<Spotify.GenresSeedResponse>(
-      webApiBaseURL + '/recommendations/available-genre-seeds'
-    );
+    console.log('called');
+    return this.http
+      .get<Spotify.GenresSeedResponse>('/recommendations/available-genre-seeds')
+      .pipe(tap((data) => console.log(data)));
   }
 }

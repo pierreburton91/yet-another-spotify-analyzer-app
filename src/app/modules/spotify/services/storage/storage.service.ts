@@ -15,4 +15,9 @@ export class StorageService {
 
     return JSON.parse(stored);
   }
+
+  clear(): void {
+    localStorage.removeItem('access');
+    localStorage.removeItem('code_verifier');
+  }
 }

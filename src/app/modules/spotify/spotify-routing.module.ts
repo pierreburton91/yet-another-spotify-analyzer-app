@@ -1,19 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthCallbackComponent, AuthComponent } from './components';
+import { RouteNames } from './constants';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'auth',
+    redirectTo: RouteNames.AUTH,
     pathMatch: 'prefix',
   },
   {
-    path: 'auth',
+    path: RouteNames.AUTH,
     component: AuthComponent,
   },
   {
-    path: 'auth-callback',
+    path: RouteNames.AUTH_CALLBACK,
     component: AuthCallbackComponent,
   },
 ];

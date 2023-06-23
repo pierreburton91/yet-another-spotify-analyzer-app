@@ -20,7 +20,7 @@ export class AuthCallbackComponent implements OnInit {
       .requestAccessToken(AuthInitResponse.getCodeFromLocation())
       .subscribe((data) => {
         this.storage.set('access', data);
-        this.router.navigate(['']);
+        this.router.navigate(['/main']);
       });
   }
 }

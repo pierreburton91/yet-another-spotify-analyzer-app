@@ -1,6 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { Router } from '@angular/router';
+import { SpotifyConst } from './modules';
 import { SpotifyFacadeService } from './modules/spotify/spotify-facade.service';
 
 @Component({
@@ -18,26 +19,17 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     const entryPath = this.location.path();
-    if (entryPath.indexOf('auth-redirect') !== -1) {
-      this.router.events.subscribe((e) => {
-        if (e instanceof NavigationEnd) {
-          this.loadData();
-        }
-      });
-      return;
-    }
-    if (!this.spotifyFacade.isLoggedIn) {
-      this.router.navigate(['/spotify']);
+
+    if (entryPath.indexOf(SpotifyConst.RouteNames.AUTH_CALLBACK) !== -1) {
+      // Let the auth callback do its magic
       return;
     }
 
-    this.loadData();
-  }
-
-  loadData() {
-    console.log('load data');
-    this.spotifyFacade
-      .getGenres()
-      .subscribe((genres) => (console.log(genres), (this.genres = genres)));
+    if (this.spotifyFacade.isLoggedIn) {
+      this.router.navigate(['/main']);
+    } else {
+      this.spotifyFacade.logout();
+      this.router.navigate([SpotifyConst.RouteNames.ROOT]);
+    }
   }
 }

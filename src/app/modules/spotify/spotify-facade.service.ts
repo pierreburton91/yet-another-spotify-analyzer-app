@@ -12,7 +12,12 @@ export class SpotifyFacadeService {
     return this.auth.isLoggedIn;
   }
 
+  logout() {
+    return this.auth.logout();
+  }
+
   getGenres() {
+    console.log('called');
     return this.genres.getGenresSeed().pipe(map(({ genres }) => genres));
   }
 }

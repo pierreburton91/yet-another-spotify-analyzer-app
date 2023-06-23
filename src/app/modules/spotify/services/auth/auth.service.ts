@@ -19,6 +19,7 @@ export class AuthService {
 
   get isLoggedIn() {
     const access = this.storage.get('access');
+
     if (!access) {
       return false;
     }
@@ -65,5 +66,9 @@ export class AuthService {
         expires_at: new Date().valueOf() + data.expires_in * 1000,
       }))
     );
+  }
+
+  logout() {
+    this.storage.clear();
   }
 }

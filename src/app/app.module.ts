@@ -3,11 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SpotifyModule } from './modules/spotify/spotify.module';
+import { MainModule, SpotifyModule } from './modules';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, SpotifyModule],
+  imports: [BrowserModule, AppRoutingModule, SpotifyModule, MainModule],
   providers: [],
   bootstrap: [AppComponent],
 })
