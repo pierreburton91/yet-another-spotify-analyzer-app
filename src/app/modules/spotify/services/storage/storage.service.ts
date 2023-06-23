@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class StorageService {
   constructor() {}
 
@@ -9,9 +9,9 @@ export class StorageService {
   }
 
   get(key: 'code_verifier'): string;
-  get(key: 'access'): Spotify.GrantAccessResponse;
+  get(key: 'access'): Spotify.StoredAccess;
   get(key: string): Spotify.Storable {
-    const stored = localStorage.getItem(key) ?? '';
+    const stored = localStorage.getItem(key) ?? JSON.stringify(null);
 
     return JSON.parse(stored);
   }

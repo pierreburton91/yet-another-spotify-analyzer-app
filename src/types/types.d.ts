@@ -41,6 +41,17 @@ declare namespace Spotify {
     refresh_token: string;
     client_id: string;
   }
-  type Storable = GrantAccessResponse | string;
+
+  interface StoredAccess {
+    access_token: string;
+    refresh_token: string;
+    expires_at: number;
+  }
+
+  interface GenresSeedResponse {
+    genres: string[];
+  }
+
+  type Storable = StoredAccess | string;
   type StorableKey = 'code_verifier' | 'access';
 }

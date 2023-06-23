@@ -1,4 +1,5 @@
 import { environment } from 'src/environments/environment';
+import { StorageService } from '../services';
 
 export class GrantAccessRequest implements Spotify.GrantAccessRequest {
   grant_type = 'authorization_code';
@@ -7,9 +8,12 @@ export class GrantAccessRequest implements Spotify.GrantAccessRequest {
   redirect_uri = environment.SPTF_APP_REDIRECT_URI;
   code_verifier;
 
-  constructor(code: Spotify.AuthInitResponse['code']) {
+  constructor(
+    code: Spotify.AuthInitResponse['code'],
+    private storage: StorageService
+  ) {
     this.code = code;
-    this.code_verifier = localStorage.getItem('code_verifier') as string;
+    this.code_verifier = this.storage.get('code_verifier');
   }
 
   valueOf() {
