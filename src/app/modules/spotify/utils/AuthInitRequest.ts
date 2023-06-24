@@ -3,7 +3,8 @@ import { StorageService } from '../services';
 
 export class AuthInitRequest implements Spotify.AuthInitRequest {
   readonly response_type = 'code';
-  readonly scope = 'user-read-private user-read-email';
+  readonly scope =
+    'user-read-private user-read-email user-top-read user-read-recently-played';
   readonly client_id = environment.SPTF_APP_CLIENT_ID;
   readonly redirect_uri = environment.SPTF_APP_REDIRECT_URI;
   readonly code_challenge_method = 'S256';
