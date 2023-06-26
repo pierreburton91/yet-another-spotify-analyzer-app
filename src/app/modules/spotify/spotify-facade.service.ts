@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs';
+import { EMPTY, catchError, map, throwError } from 'rxjs';
 import { AuthService, GenresService, UserService } from './services';
 
 @Injectable({
@@ -14,6 +14,21 @@ export class SpotifyFacadeService {
 
   get isLoggedIn() {
     return this.auth.isLoggedIn;
+  }
+
+  tryLoginOrLogout() {
+    if (!this.auth.hasStoredAccess) {
+      return throwError(() => new Error('No access found in storage.'));
+    }
+    if (this.auth.isLoggedIn) {
+      return EMPTY;
+    }
+    return this.auth.refreshAccessToken().pipe(
+      catchError(() => {
+        this.auth.logout();
+        return throwError(() => new Error('Could not refresh token.'));
+      })
+    );
   }
 
   logout() {

@@ -1,6 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { catchError } from 'rxjs';
 import { SpotifyConst } from './modules';
 import { SpotifyFacadeService } from './modules/spotify/spotify-facade.service';
 
@@ -10,7 +11,6 @@ import { SpotifyFacadeService } from './modules/spotify/spotify-facade.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  genres: Spotify.GenresSeedResponse['genres'] = [];
   constructor(
     private spotifyFacade: SpotifyFacadeService,
     private router: Router,
@@ -25,11 +25,11 @@ export class AppComponent implements OnInit {
       return;
     }
 
-    if (this.spotifyFacade.isLoggedIn) {
-      this.router.navigate(['/main']);
-    } else {
-      this.spotifyFacade.logout();
-      this.router.navigate([SpotifyConst.RouteNames.ROOT]);
-    }
+    this.spotifyFacade
+      .tryLoginOrLogout()
+      .pipe(
+        catchError(() => this.router.navigate([SpotifyConst.RouteNames.ROOT]))
+      )
+      .subscribe(() => this.router.navigate(['/main']));
   }
 }

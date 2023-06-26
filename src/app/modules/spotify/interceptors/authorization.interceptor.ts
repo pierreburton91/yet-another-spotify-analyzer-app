@@ -14,7 +14,7 @@ function setAuthorization(
   access_token: Spotify.GrantAccessResponse['access_token']
 ) {
   return req.clone({
-    headers: req.headers.set('Authorization', `Bearer ${access_token}`),
+    setHeaders: { Authorization: `Bearer ${access_token}` },
   });
 }
 

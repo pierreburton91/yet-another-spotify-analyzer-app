@@ -17,6 +17,12 @@ export class AuthService {
     private storage: StorageService
   ) {}
 
+  get hasStoredAccess() {
+    const access = this.storage.get('access');
+
+    return Boolean(access);
+  }
+
   get isLoggedIn() {
     const access = this.storage.get('access');
 
