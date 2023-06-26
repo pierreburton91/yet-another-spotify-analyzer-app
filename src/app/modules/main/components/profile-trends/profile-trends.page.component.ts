@@ -9,5 +9,7 @@ import { SpotifyFacadeService } from 'src/app/modules/spotify/spotify-facade.ser
 export class ProfileTrendsPageComponent {
   constructor(private spotifyFacade: SpotifyFacadeService) {}
 
-  initAnalyzis() {}
+  initAnalyzis() {
+    // this.spotifyFacade.getUserTopArtists()
+  }
 }

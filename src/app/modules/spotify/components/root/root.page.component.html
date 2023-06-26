@@ -1,0 +1,19 @@
+<div id="spotify">
+  <div class="background" aria-hidden="true">
+    <img
+      class="background__image"
+      srcset="
+        /assets/images/auth_bg_720x480.jpg   720w,
+        /assets/images/auth_bg_1080x720.jpg 1080w
+      "
+      sizes="(max-width: 720px) 720px,
+   1080px"
+      src="/assets/images/auth_bg_1080x720.jpg"
+      alt="DJ table with neon lights"
+    />
+    <div class="background__blur-overlay"></div>
+  </div>
+  <div class="content">
+    <router-outlet />
+  </div>
+</div>

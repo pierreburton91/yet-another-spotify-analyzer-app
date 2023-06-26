@@ -1,7 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { catchError } from 'rxjs';
 import { SpotifyConst } from './modules';
 import { SpotifyFacadeService } from './modules/spotify/spotify-facade.service';
 
@@ -27,9 +26,9 @@ export class AppComponent implements OnInit {
 
     this.spotifyFacade
       .tryLoginOrLogout()
-      .pipe(
-        catchError(() => this.router.navigate([SpotifyConst.RouteNames.ROOT]))
-      )
-      .subscribe(() => this.router.navigate(['/main']));
+      .subscribe({
+        error: () => this.router.navigate([SpotifyConst.RouteNames.ROOT]),
+        complete: () => this.router.navigate(['/main']),
+      });
   }
 }

@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
-import { EMPTY, catchError, map, throwError } from 'rxjs';
-import { AuthService, GenresService, UserService } from './services';
+import { EMPTY, catchError, map, switchMap, tap, throwError } from 'rxjs';
+import {
+  AuthService,
+  GenresService,
+  StorageService,
+  UserService,
+} from './services';
 
 @Injectable({
   providedIn: 'root',
@@ -8,6 +13,7 @@ import { AuthService, GenresService, UserService } from './services';
 export class SpotifyFacadeService {
   constructor(
     private auth: AuthService,
+    private storage: StorageService,
     private genres: GenresService,
     private user: UserService
   ) {}
@@ -24,6 +30,8 @@ export class SpotifyFacadeService {
       return EMPTY;
     }
     return this.auth.refreshAccessToken().pipe(
+      tap((data) => this.storage.set('access', data)),
+      switchMap(() => EMPTY),
       catchError(() => {
         this.auth.logout();
         return throwError(() => new Error('Could not refresh token.'));
