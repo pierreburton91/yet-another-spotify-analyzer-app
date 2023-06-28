@@ -1,0 +1,51 @@
+.spinner {
+  width: 64px;
+  height: 64px;
+  border-radius: 50px;
+  border-top: 4px solid var(--indigo);
+  border-right: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-left: 4px solid transparent;
+  position: relative;
+  box-sizing: border-box;
+  animation: rotate 2s linear infinite;
+  &::before {
+    content: "";
+    position: absolute;
+    box-sizing: inherit;
+    border-radius: inherit;
+    top: 0;
+    left: 0;
+    width: 56px;
+    height: 56px;
+    border-top: 4px solid var(--dark-purple);
+    border-right: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+    border-left: 4px solid transparent;
+    animation: rotate 1.2s linear infinite;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    box-sizing: inherit;
+    border-radius: inherit;
+    top: 4px;
+    left: 4px;
+    width: 48px;
+    height: 48px;
+    border-top: 4px solid var(--electric-violet);
+    border-right: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+    border-left: 4px solid transparent;
+    animation: rotate 0.5s linear infinite;
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

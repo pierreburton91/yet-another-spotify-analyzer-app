@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { GenericsModule } from '../generics/generics.module';
 import {
   AuthCallbackComponent,
   AuthComponent,
@@ -18,7 +19,13 @@ import { SpotifyRoutingModule } from './spotify-routing.module';
 
 @NgModule({
   declarations: [RootPageComponent, AuthComponent, AuthCallbackComponent],
-  imports: [CommonModule, SpotifyRoutingModule, HttpClientModule, RouterModule],
+  imports: [
+    CommonModule,
+    SpotifyRoutingModule,
+    HttpClientModule,
+    RouterModule,
+    GenericsModule,
+  ],
   providers: [
     AuthService,
     StorageService,
