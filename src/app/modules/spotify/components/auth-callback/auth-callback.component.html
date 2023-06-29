@@ -1,3 +1,22 @@
 <section class="container">
-  <g-spinner />
+  <div class="island">
+    <ng-container *ngIf="isBusy && !errorMessage">
+      <g-spinner />
+      <p>Logging you in...</p>
+    </ng-container>
+    <ng-container *ngIf="errorMessage">
+      <h1 class="header">😖 Authentication failed</h1>
+      <p class="sub-header">An error occured while logging in.</p>
+      <pre class="error">{{ errorMessage }}</pre>
+      <button
+        g-button
+        type="button"
+        [disabled]="isBusy"
+        [loading]="isBusy"
+        (click)="retry()"
+      >
+        Try again
+      </button>
+    </ng-container>
+  </div>
 </section>

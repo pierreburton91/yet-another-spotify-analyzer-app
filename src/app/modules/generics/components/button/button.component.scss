@@ -1,4 +1,7 @@
 [g-button] {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: relative;
   background-image: none;
   background: radial-gradient(
@@ -8,7 +11,8 @@
   );
   background-size: 120%;
   color: currentColor;
-  padding: 16px 24px;
+  padding: 8px;
+  height: 48px;
   border-radius: 24px;
   border: none;
   cursor: pointer;
@@ -18,7 +22,10 @@
   &:focus {
     outline: 1px solid var(--persian-rose);
   }
-  &:hover {
+  &:hover:not(:disabled) {
     background-position: bottom right;
+  }
+  &:disabled {
+    cursor: default;
   }
 }

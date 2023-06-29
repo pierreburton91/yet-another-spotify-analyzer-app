@@ -9,6 +9,9 @@ import { AuthInitResponse } from '../../utils';
   styleUrls: ['./auth-callback.component.scss'],
 })
 export class AuthCallbackComponent implements OnInit {
+  isBusy = false;
+  errorMessage: string | null = null;
+
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -16,11 +19,21 @@ export class AuthCallbackComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.isBusy = true;
     this.authService
       .requestAccessToken(AuthInitResponse.getCodeFromLocation())
-      .subscribe((data) => {
-        this.storage.set('access', data);
-        this.router.navigate(['/main']);
+      .subscribe({
+        next: (data) => this.storage.set('access', data),
+        error: (error) => {
+          this.errorMessage = `${error.message}\r\n"${error.error.error_description}"`;
+          this.isBusy = false;
+        },
+        complete: () => this.router.navigate(['/main']),
       });
+  }
+
+  retry() {
+    this.isBusy = true;
+    this.authService.initSpotifyAuthorization();
   }
 }

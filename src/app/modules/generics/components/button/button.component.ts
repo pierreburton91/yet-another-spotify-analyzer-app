@@ -8,4 +8,5 @@ import { Component, Input, ViewEncapsulation } from '@angular/core';
 })
 export class ButtonComponent {
   @Input({ required: true }) type: HTMLButtonElement['type'] = 'button';
+  @Input() loading: boolean = false;
 }

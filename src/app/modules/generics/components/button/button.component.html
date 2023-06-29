@@ -1,1 +1,2 @@
-<ng-content />
+<g-spinner *ngIf="loading; else content" [small]="true" />
+<ng-template #content><ng-content /></ng-template>
