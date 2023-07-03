@@ -1,35 +1,30 @@
-.spinner {
+[y-spinner]:indeterminate {
+  // Reset base styles
+  background: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  &::-moz-progress-bar {
+    background: none; /* display:none doesn’t work, don’t ask me why */
+  }
+  &::-webkit-progress-bar {
+    display: none;
+  }
+  &::-ms-fill {
+    animation-name: none; /* Explicitly must be `animation-name: none` */
+  }
+
   width: 32px;
   height: 32px;
   border-radius: 50px;
   border: 4px solid #fff;
   border-top-color: var(--persian-rose);
-  position: relative;
   box-sizing: border-box;
   animation: rotate 1.4s linear infinite;
-  &::after {
-    content: "";
-    position: absolute;
-    box-sizing: inherit;
-    top: -2px;
-    left: -4px;
-    width: inherit;
-    height: inherit;
-    border-radius: 50px;
-    border: 4px solid transparent;
-    border-top-color: transparent;
-    border-top-color: var(--persian-rose);
-    transform: scale(1.3);
-    filter: blur(3px);
-  }
 }
-.spinner--small {
+.spinner--small:indeterminate {
   width: 24px;
   height: 24px;
-  &::after {
-    top: -2px;
-    left: -4px;
-  }
 }
 
 @keyframes rotate {

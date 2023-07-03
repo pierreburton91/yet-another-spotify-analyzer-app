@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SpotifyFacadeService } from 'src/app/modules/spotify/spotify-facade.service';
 
 @Component({
@@ -6,10 +6,14 @@ import { SpotifyFacadeService } from 'src/app/modules/spotify/spotify-facade.ser
   templateUrl: './profile-trends.page.component.html',
   styleUrls: ['./profile-trends.page.component.scss'],
 })
-export class ProfileTrendsPageComponent {
+export class ProfileTrendsPageComponent implements OnInit {
+  user$: Spotify.UserProfileResponse | null = null;
+
   constructor(private spotifyFacade: SpotifyFacadeService) {}
 
-  initAnalyzis() {
-    // this.spotifyFacade.getUserTopArtists()
+  ngOnInit() {
+    // this.spotifyFacade
+    //   .getUserProfileAnalyzis()
+    //   .subscribe(({ user }) => (this.user$ = user));
   }
 }

@@ -52,6 +52,27 @@ declare namespace Spotify {
     genres: string[];
   }
 
+  interface UserProfileResponse {
+    contry?: string;
+    display_name?: string;
+    email?: string;
+    explicit_content?: {
+      filter_enabled?: boolean;
+      filter_locked?: boolean;
+    };
+    external_urls?: ExternalUrls;
+    followers?: {
+      href?: null;
+      total?: number;
+    };
+    href?: string;
+    id?: string;
+    images?: Image[];
+    product?: string;
+    type?: 'user';
+    uri?: string;
+  }
+
   type UserTopItemsRequestType = 'artists' | 'tracks';
 
   interface UserTopItemsRequestParams {

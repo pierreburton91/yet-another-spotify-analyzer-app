@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
+import { AuthBaseUrl } from '../../constants';
 import {
   AuthInitRequest,
   GrantAccessRequest,
@@ -10,8 +11,6 @@ import { StorageService } from '../storage/storage.service';
 
 @Injectable()
 export class AuthService {
-  private readonly baseUrl = 'https://accounts.spotify.com';
-
   constructor(
     private httpClient: HttpClient,
     private storage: StorageService
@@ -43,7 +42,7 @@ export class AuthService {
     const authInitRequest = new AuthInitRequest(this.storage);
     const args = await authInitRequest.setCodeVerifier().toParams();
 
-    (window as Window).location = this.baseUrl + '/authorize?' + args;
+    (window as Window).location = AuthBaseUrl + '/authorize?' + args;
   }
 
   requestAccessToken(code: Spotify.AuthInitResponse['code']) {
@@ -57,21 +56,17 @@ export class AuthService {
   }
 
   requestToken(params: URLSearchParams): Observable<Spotify.StoredAccess> {
-    const requestToken$ = this.httpClient.post<Spotify.GrantAccessResponse>(
-      this.baseUrl + '/api/token',
-      params,
-      {
+    return this.httpClient
+      .post<Spotify.GrantAccessResponse>(AuthBaseUrl + '/api/token', params, {
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      }
-    );
-
-    return requestToken$.pipe(
-      map((data) => ({
-        access_token: data.access_token,
-        refresh_token: data.refresh_token,
-        expires_at: new Date().valueOf() + data.expires_in * 1000,
-      }))
-    );
+      })
+      .pipe(
+        map((data) => ({
+          access_token: data.access_token,
+          refresh_token: data.refresh_token,
+          expires_at: new Date().valueOf() + data.expires_in * 1000,
+        }))
+      );
   }
 
   logout() {

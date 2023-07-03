@@ -1,11 +1,22 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ProfileTrendsPageComponent } from './components';
+import { ProfileTrendsPageComponent, RootPageComponent } from './components';
 
 const routes: Routes = [
   {
     path: '',
-    component: ProfileTrendsPageComponent,
+    component: RootPageComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: 'profile',
+        pathMatch: 'prefix',
+      },
+      {
+        path: 'profile',
+        component: ProfileTrendsPageComponent,
+      },
+    ],
   },
 ];
 

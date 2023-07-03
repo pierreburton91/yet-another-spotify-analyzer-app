@@ -24,11 +24,13 @@ export class AppComponent implements OnInit {
       return;
     }
 
-    this.spotifyFacade
-      .tryLoginOrLogout()
-      .subscribe({
-        error: () => this.router.navigate([SpotifyConst.RouteNames.ROOT]),
-        complete: () => this.router.navigate(['/main']),
-      });
+    this.spotifyFacade.tryLoginOrLogout().subscribe({
+      error: (error) => {
+        this.router.navigate([SpotifyConst.RouteNames.ROOT]);
+      },
+      complete: () => {
+        this.router.navigate(['/main']);
+      },
+    });
   }
 }

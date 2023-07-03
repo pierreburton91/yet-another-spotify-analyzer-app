@@ -7,6 +7,7 @@ import {
 import { Injectable } from '@angular/core';
 
 import { Observable, switchMap } from 'rxjs';
+import { AuthBaseUrl } from '../constants';
 import { AuthService, StorageService } from '../services';
 
 function setAuthorization(
@@ -29,6 +30,11 @@ export class AuthorizationInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
+    // Let pass any auth calls
+    if (req.url.startsWith(AuthBaseUrl)) {
+      return next.handle(req);
+    }
+
     const { tokenExpiresAt } = this.authService;
     // Refresh the current token if it's less than 5 minutes before expiration.
     if (tokenExpiresAt && tokenExpiresAt - new Date().valueOf() < 300000) {

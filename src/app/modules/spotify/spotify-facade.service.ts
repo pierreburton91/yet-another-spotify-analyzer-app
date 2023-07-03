@@ -1,5 +1,13 @@
 import { Injectable } from '@angular/core';
-import { EMPTY, catchError, map, switchMap, tap, throwError } from 'rxjs';
+import {
+  EMPTY,
+  catchError,
+  forkJoin,
+  map,
+  switchMap,
+  tap,
+  throwError,
+} from 'rxjs';
 import {
   AuthService,
   GenresService,
@@ -29,6 +37,7 @@ export class SpotifyFacadeService {
     if (this.auth.isLoggedIn) {
       return EMPTY;
     }
+
     return this.auth.refreshAccessToken().pipe(
       tap((data) => this.storage.set('access', data)),
       switchMap(() => EMPTY),
@@ -45,6 +54,17 @@ export class SpotifyFacadeService {
 
   getGenres() {
     return this.genres.getGenresSeed().pipe(map(({ genres }) => genres));
+  }
+
+  getUserProfile() {
+    return this.user.getUserProfile();
+  }
+
+  getUserProfileAnalyzis(options?: Spotify.UserTopItemsRequestParams) {
+    return forkJoin({
+      artists: this.user.getUserTopItems<Spotify.Artist>('artists', options),
+      tracks: this.user.getUserTopItems<Spotify.Track>('tracks', options),
+    });
   }
 
   getUserTopArtists(options?: Spotify.UserTopItemsRequestParams) {

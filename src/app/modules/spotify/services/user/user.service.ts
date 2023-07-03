@@ -10,6 +10,10 @@ import { UserTopItemsParams } from '../../constants';
 export class UserService {
   constructor(private http: HttpClient) {}
 
+  getUserProfile() {
+    return this.http.get<Spotify.UserProfileResponse>('/me');
+  }
+
   getUserTopItems<T>(
     type: Spotify.UserTopItemsRequestType,
     options?: Spotify.UserTopItemsRequestParams

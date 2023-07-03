@@ -1,0 +1,13 @@
+<section class="top-bar">
+  <h1>YAS<span>S</span>AA</h1>
+  <div class="profile">
+    <progress *ngIf="isLoading" y-spinner [small]="true"></progress>
+    <div *ngIf="!isLoading && !errorMessage">
+      {{ userProfile?.display_name }}
+    </div>
+    <pre *ngIf="!isLoading && errorMessage" class="error">{{
+      errorMessage
+    }}</pre>
+  </div>
+</section>
+<router-outlet />

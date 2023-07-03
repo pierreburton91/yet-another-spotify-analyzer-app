@@ -7,7 +7,7 @@ import {
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
-import { WebApiBaseUrl } from '../constants';
+import { AuthBaseUrl, WebApiBaseUrl } from '../constants';
 
 @Injectable()
 export class BaseURLInterceptor implements HttpInterceptor {
@@ -15,7 +15,8 @@ export class BaseURLInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    if (!req.url.startsWith('https')) {
+    // Only affect non-auth requests
+    if (!req.url.startsWith(AuthBaseUrl)) {
       const clone = req.clone({ url: WebApiBaseUrl + req.url });
 
       return next.handle(clone);
