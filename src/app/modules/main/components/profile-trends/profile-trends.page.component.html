@@ -1,6 +1,4 @@
 <section class="container">
-  <h1>
-    Your profile
-    <span>{{ user$?.display_name }}</span>
-  </h1>
+  <app-section-menu [links]="menuItems"></app-section-menu>
+  <router-outlet />
 </section>

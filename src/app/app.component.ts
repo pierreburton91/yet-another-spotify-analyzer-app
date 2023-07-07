@@ -25,7 +25,7 @@ export class AppComponent implements OnInit {
     }
 
     this.spotifyFacade.tryLoginOrLogout().subscribe({
-      error: (error) => {
+      error: () => {
         this.router.navigate([SpotifyConst.RouteNames.ROOT]);
       },
       complete: () => {

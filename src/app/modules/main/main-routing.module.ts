@@ -1,6 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ProfileTrendsPageComponent, RootPageComponent } from './components';
+import {
+  LongTermPageComponent,
+  MediumTermPageComponent,
+  ProfileTrendsPageComponent,
+  RootPageComponent,
+  ShortTermPageComponent,
+} from './components';
 
 const routes: Routes = [
   {
@@ -15,6 +21,25 @@ const routes: Routes = [
       {
         path: 'profile',
         component: ProfileTrendsPageComponent,
+        children: [
+          {
+            path: '',
+            redirectTo: 'long-term',
+            pathMatch: 'prefix',
+          },
+          {
+            path: 'long-term',
+            component: LongTermPageComponent,
+          },
+          {
+            path: 'medium-term',
+            component: MediumTermPageComponent,
+          },
+          {
+            path: 'short-term',
+            component: ShortTermPageComponent,
+          },
+        ],
       },
     ],
   },

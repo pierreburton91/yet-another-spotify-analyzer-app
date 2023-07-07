@@ -1,0 +1,12 @@
+<nav class="section-menu">
+  <a
+    *ngFor="let link of links"
+    [routerLink]="link.to"
+    [relativeTo]="link.relativeTo"
+    [ariaCurrentWhenActive]="'page'"
+    class="section-menu__link"
+    [routerLinkActive]="'section-menu__link--active'"
+  >
+    <span>{{ link.label }}</span>
+  </a>
+</nav>

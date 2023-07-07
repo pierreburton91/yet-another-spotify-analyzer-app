@@ -182,3 +182,15 @@ declare namespace Spotify {
   type Storable = StoredAccess | string;
   type StorableKey = 'code_verifier' | 'access';
 }
+
+interface GenreHit {
+  name: string;
+  hits: number;
+  artists: Spotify.Artist[];
+}
+
+type Storable =
+  | Spotify.UserProfileResponse
+  | Spotify.UserTopItemsResponse<Spotify.Artist>
+  | Spotify.UserTopItemsResponse<Spotify.Track>;
+type StorableKey = 'user_profile' | 'utir_artist' | 'utir_track';
