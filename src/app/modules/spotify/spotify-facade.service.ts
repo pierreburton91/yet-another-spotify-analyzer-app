@@ -60,17 +60,17 @@ export class SpotifyFacadeService {
     return this.user.getUserProfile();
   }
 
-  getUserProfileAnalyzis(options?: Spotify.UserTopItemsRequestParams) {
+  getUserProfileAnalyzis(options?: Spotify.UserTopItemsRequest) {
     return forkJoin({
       artists: this.user.getUserTopItems<Spotify.Artist>('artists', options),
       tracks: this.user.getUserTopItems<Spotify.Track>('tracks', options),
     });
   }
 
-  getUserTopArtists(options?: Spotify.UserTopItemsRequestParams) {
+  getUserTopArtists(options?: Spotify.UserTopItemsRequest) {
     return this.user.getUserTopItems<Spotify.Artist>('artists', options);
   }
-  getUserTopTracks(options?: Spotify.UserTopItemsRequestParams) {
+  getUserTopTracks(options?: Spotify.UserTopItemsRequest) {
     return this.user.getUserTopItems<Spotify.Track>('tracks', options);
   }
 }

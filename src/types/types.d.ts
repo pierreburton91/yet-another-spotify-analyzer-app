@@ -75,7 +75,7 @@ declare namespace Spotify {
 
   type UserTopItemsRequestType = 'artists' | 'tracks';
 
-  interface UserTopItemsRequestParams {
+  interface UserTopItemsRequest {
     time_range: 'long_term' | 'medium_term' | 'short_term';
     limit: number;
     offset: number;

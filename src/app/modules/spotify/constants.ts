@@ -6,6 +6,11 @@ export const RouteNames = {
 export const AuthBaseUrl = 'https://accounts.spotify.com';
 export const WebApiBaseUrl = 'https://api.spotify.com/v1';
 export const UserTopItemsParams = {
+  REQUEST: {
+    LONG: 'long-term',
+    MEDIUM: 'medium-term',
+    SHORT: 'short-term',
+  },
   LIMIT: {
     MIN: 1,
     DEFAULT: 20,
