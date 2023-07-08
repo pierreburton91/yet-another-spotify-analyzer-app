@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@700&display=swap");
+
 :root {
   --midnight-blue: #120540;
   --indigo: #180559;
@@ -13,4 +15,24 @@ body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   color: #eeeeee;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  box-sizing: border-box;
+}
+
+.app-name {
+  font-family: "Kanit", sans-serif;
+  font-size: 4.2rem;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: 2px;
+}
+.app-name__accent {
+  color: var(--persian-rose);
 }

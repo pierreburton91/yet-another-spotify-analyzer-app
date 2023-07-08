@@ -1,13 +1,13 @@
 <section class="container">
   <div class="island">
-    <label *ngIf="isBusy && !errorMessage" class="loading">
+    <label *ngIf="isBusy && !error" class="loading">
       Logging you in
       <progress y-spinner></progress>
     </label>
-    <ng-container *ngIf="errorMessage">
+    <ng-container *ngIf="error">
       <h1 class="header">😖 Authentication failed</h1>
       <p class="sub-header">An error occured while logging in.</p>
-      <pre class="error">{{ errorMessage }}</pre>
+      <app-error-message [error]="error" />
       <button
         y-button
         type="button"

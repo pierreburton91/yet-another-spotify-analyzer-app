@@ -1,14 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@700&display=swap");
-
 .container {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  padding: 12px;
-  box-sizing: border-box;
 }
 .island {
   display: flex;
@@ -16,17 +8,7 @@
   margin-bottom: 16px;
   text-align: center;
 }
-.header {
-  font-family: "Kanit", sans-serif;
-  font-size: 4.2rem;
-  font-weight: 700;
-  margin: 0;
-  letter-spacing: 2px;
-}
-.header__accent {
-  color: var(--persian-rose);
-}
-.sub-header {
+.sub-app-name {
   margin: 24px 0 64px 0;
   text-shadow: 0 1px 2px #212121;
 }

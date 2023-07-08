@@ -9,7 +9,7 @@ import { MainFacadeService } from '../../main-facade.service';
 export class RootPageComponent implements OnInit {
   isLoading: boolean = false;
   userProfile: Spotify.UserProfileResponse | null = null;
-  errorMessage: string | null = null;
+  error: Error | null = null;
 
   constructor(private mainFacade: MainFacadeService) {}
 
@@ -17,7 +17,7 @@ export class RootPageComponent implements OnInit {
     this.isLoading = true;
     this.mainFacade.getUserProfile().subscribe({
       next: (userProfile) => (this.userProfile = userProfile),
-      error: (error) => (this.errorMessage = error.message),
+      error: (error) => (this.error = error),
       complete: () => (this.isLoading = false),
     });
   }

@@ -10,7 +10,7 @@ import { AuthInitResponse } from '../../utils';
 })
 export class AuthCallbackComponent implements OnInit {
   isBusy = false;
-  errorMessage: string | null = null;
+  error: Error | null = null;
 
   constructor(
     private authService: AuthService,
@@ -25,7 +25,9 @@ export class AuthCallbackComponent implements OnInit {
       this.authService.requestAccessToken(code).subscribe({
         next: (data) => this.storage.set('access', data),
         error: (error) => {
-          this.errorMessage = `${error.message}\r\n"${error.error?.error_description}"`;
+          this.error = new Error(
+            `${error.message}\r\n"${error.error?.error_description}"`
+          );
           this.isBusy = false;
         },
         complete: () => this.router.navigate(['/main']),
@@ -34,7 +36,7 @@ export class AuthCallbackComponent implements OnInit {
     }
     const error = AuthInitResponse.getErrorFromLocation();
     if (error) {
-      this.errorMessage = error;
+      this.error = new Error(error);
       this.isBusy = false;
     }
   }
