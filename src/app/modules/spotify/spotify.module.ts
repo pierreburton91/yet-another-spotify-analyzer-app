@@ -4,8 +4,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { GenericsModule } from '../generics/generics.module';
 import {
-  AuthCallbackComponent,
-  AuthComponent,
+  AuthCallbackPageComponent,
+  AuthPageComponent,
   RootPageComponent,
 } from './components/';
 import { httpInterceptors } from './interceptors';
@@ -18,7 +18,11 @@ import {
 import { SpotifyRoutingModule } from './spotify-routing.module';
 
 @NgModule({
-  declarations: [RootPageComponent, AuthComponent, AuthCallbackComponent],
+  declarations: [
+    RootPageComponent,
+    AuthPageComponent,
+    AuthCallbackPageComponent,
+  ],
   imports: [
     CommonModule,
     SpotifyRoutingModule,

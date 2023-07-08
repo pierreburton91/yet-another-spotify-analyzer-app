@@ -5,10 +5,10 @@ import { AuthInitResponse } from '../../utils';
 
 @Component({
   selector: 'app-auth-callback',
-  templateUrl: './auth-callback.component.html',
-  styleUrls: ['./auth-callback.component.scss'],
+  templateUrl: './auth-callback.page.component.html',
+  styleUrls: ['./auth-callback.page.component.scss'],
 })
-export class AuthCallbackComponent implements OnInit {
+export class AuthCallbackPageComponent implements OnInit {
   isBusy = false;
   error: Error | null = null;
 

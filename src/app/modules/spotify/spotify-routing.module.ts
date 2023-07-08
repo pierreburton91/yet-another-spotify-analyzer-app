@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {
-  AuthCallbackComponent,
-  AuthComponent,
+  AuthCallbackPageComponent,
+  AuthPageComponent,
   RootPageComponent,
 } from './components';
 import { RouteNames } from './constants';
@@ -19,11 +19,11 @@ const routes: Routes = [
       },
       {
         path: RouteNames.AUTH,
-        component: AuthComponent,
+        component: AuthPageComponent,
       },
       {
         path: RouteNames.AUTH_CALLBACK,
-        component: AuthCallbackComponent,
+        component: AuthCallbackPageComponent,
       },
     ],
   },

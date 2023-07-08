@@ -1,3 +1,3 @@
-export { AuthCallbackComponent } from './auth-callback/auth-callback.component';
-export { AuthComponent } from './auth/auth.component';
+export { AuthCallbackPageComponent } from './auth-callback/auth-callback.page.component';
+export { AuthPageComponent } from './auth/auth.page.component';
 export { RootPageComponent } from './root/root.page.component';
