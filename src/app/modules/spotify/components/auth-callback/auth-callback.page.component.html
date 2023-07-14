@@ -2,14 +2,14 @@
   <div class="island">
     <label *ngIf="isBusy && !error" class="loading">
       Logging you in
-      <progress y-spinner></progress>
+      <progress yasaa-spinner></progress>
     </label>
     <ng-container *ngIf="error">
       <h1 class="header">😖 Authentication failed</h1>
       <p class="sub-header">An error occured while logging in.</p>
       <app-error-message [error]="error" />
       <button
-        y-button
+        yasaa-button
         type="button"
         [disabled]="isBusy"
         [loading]="isBusy"

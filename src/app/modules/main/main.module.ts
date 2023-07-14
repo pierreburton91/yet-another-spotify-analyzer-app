@@ -11,6 +11,7 @@ import {
 } from './components';
 import { MainRoutingModule } from './main-routing.module';
 import { StorageService } from './services';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 @NgModule({
   declarations: [
     ProfileTrendsPageComponent,
@@ -18,6 +19,7 @@ import { StorageService } from './services';
     LongTermPageComponent,
     MediumTermPageComponent,
     ShortTermPageComponent,
+    UserProfileComponent,
   ],
   imports: [CommonModule, MainRoutingModule, RouterModule, GenericsModule],
   providers: [StorageService],

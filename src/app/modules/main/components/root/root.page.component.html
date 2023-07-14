@@ -1,11 +1,10 @@
-<section class="container">
+<header class="container">
   <h1 class="app-name">YA<span class="app-name__accent">S</span>AA</h1>
-  <div class="profile">
-    <progress *ngIf="isLoading" y-spinner [small]="true"></progress>
-    <div *ngIf="!isLoading && !error">
-      {{ userProfile?.display_name }}
-    </div>
-    <app-error-message *ngIf="!isLoading && error" [error]="error" />
-  </div>
-</section>
+  <app-user-profile
+    class="profile"
+    [userProfile]="userProfile"
+    [isLoading]="isLoading"
+    [error]="error"
+  />
+</header>
 <router-outlet />

@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 
 @Component({
-  selector: '[y-spinner]',
+  selector: '[yasaa-spinner]',
   templateUrl: './spinner.component.html',
   styleUrls: ['./spinner.component.scss'],
   encapsulation: ViewEncapsulation.None,

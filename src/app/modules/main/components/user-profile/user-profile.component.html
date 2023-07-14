@@ -1,0 +1,43 @@
+<progress *ngIf="isLoading" yasaa-spinner [small]="true"></progress>
+<aside *ngIf="!isLoading && !error" class="user-profile">
+  <img
+    [src]="image"
+    width="86"
+    height="86"
+    [alt]="userProfile?.display_name + '\'s profile image'"
+    class="user-profile__image"
+  />
+  <div class="user-profile__data">
+    <div class="user-profile__name">{{ userProfile?.display_name }}</div>
+    <dl class="user-profile__attributes">
+      <ng-container *ngIf="product">
+        <dt class="sr-only">Subscription</dt>
+        <dd
+          class="user-profile__attribute-product"
+          [class]="'user-profile__attribute-product--' + product"
+        >
+          {{ product }}
+        </dd>
+      </ng-container>
+      <ng-container *ngIf="explicitContent !== UNKNOWN">
+        <dt class="sr-only">Explicit content filter</dt>
+        <dd
+          class="user-profile__attribute-explicit"
+          [class]="'user-profile__attribute-explicit--' + explicitContent"
+          [title]="
+            explicitContent
+              ? 'Explicit content is filtered'
+              : 'Explicit content is allowed'
+          "
+        >
+          E
+        </dd>
+      </ng-container>
+      <ng-container *ngIf="followers !== false">
+        <dt class="sr-only">Followers</dt>
+        <dd class="user-profile__attribute-followers">🐑 {{ followers }}</dd>
+      </ng-container>
+    </dl>
+  </div>
+</aside>
+<app-error-message *ngIf="!isLoading && error" [error]="error" />
